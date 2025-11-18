@@ -46,7 +46,7 @@ mod to_tokens;
 
 use core::ops::BitOr;
 use std::ffi::CStr;
-use std::ops::{Range, RangeBounds};
+use std::ops::{Bound, Range, RangeBounds};
 use std::path::PathBuf;
 use std::str::FromStr;
 use std::{error, fmt};
