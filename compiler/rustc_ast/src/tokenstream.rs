@@ -978,8 +978,8 @@ pub struct DelimSpan {
 
 impl DelimSpan {
     pub fn from_single(sp: Span) -> Self {
-        let default_open = sp.shrink_to_lo();
-        let default_close = sp.shrink_to_hi();
+        let default_open = sp;
+        let default_close = sp;
 
         let Some(sm) = rustc_span::source_map::get_source_map() else {
             // No source map available.
