@@ -1009,9 +1009,11 @@ impl DelimSpan {
                 // and see if the last matches up e.g. make sure it's not some
                 // extra mismatched delimiter.
 
-                let len = (sp.hi() - sp.lo()).0 as usize;
                 let open = sp.subspan(0..first.len_utf8()).unwrap_or(default_open);
-                let close = sp.subspan((len - last.len_utf8())..).unwrap_or(default_close);
+
+                let len = (sp.hi() - sp.lo()).0 as usize;
+                let pos = len.checked_sub(last.len_utf8()).unwrap_or(0);
+                let close = sp.subspan(pos..).unwrap_or(default_close);
 
                 Ok(match (first, last) {
                     ('(', ')') | ('{', '}') | ('[', ']') => (open, close),
